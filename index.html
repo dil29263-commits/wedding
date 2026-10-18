@@ -190,7 +190,6 @@ select.input-line {
         <img src="rose.png" alt="Роза">
         <img src="bottle.png" alt="Бутылка">
       </div>
-      <!-- ЗАМЕНЕН ТЕКСТ -->
       <div class="info-text">Просим не дарить нам цветы.<br>Вместо цветов будем рады бутылочке<br>креативного алкоголя.</div>
       
       <div class="info-phone-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/><path d="M8 10h8M8 14h8"/><path d="M12 6c-1 0-2 .5-2 1.5S11 9 12 9s2-.5 2-1.5S13 6 12 6z"/></svg></div>
@@ -214,11 +213,13 @@ select.input-line {
 
   </div>
 
-  <!-- Форма присутствия (на бежевом фоне) -->
+  <!-- Форма присутствия -->
   <div class="rsvp-section">
     <h2 class="rsvp-title">Присутствие</h2>
     <div class="rsvp-subtitle">Пожалуйста, подтвердите ваше<br>присутствие до 23.06.2027</div>
-    <form class="rsvp-form" action="https://formspree.io/f/maeqkoag" method="POST">
+    
+    <!-- УБРАЛИ FORMSPREE, ДОБАВИЛИ ID -->
+    <form class="rsvp-form" id="rsvpForm">
       
       <div class="form-group">
         <label class="form-label" for="guest-name">Ваше имя и фамилия</label>
@@ -258,6 +259,7 @@ select.input-line {
       </div>
       <button type="submit" class="submit-btn">Отправить</button>
     </form>
+    
     <div class="countdown-section">
       <div class="countdown-title">До встречи через</div>
       <div class="countdown-timer">
@@ -271,6 +273,7 @@ select.input-line {
 
 </div>
 
+<!-- ТАЙМЕР -->
 <script>
   var endDate = new Date("2027-07-23T15:00:00").getTime();
   function updateTimer() {
@@ -290,5 +293,8 @@ select.input-line {
   updateTimer();
   setInterval(updateTimer, 1000);
 </script>
-</body>
-</html>
+
+<!-- ОТПРАВКА В TELEGRAM ЧЕРЕЗ CLOUDFLARE -->
+<script>
+  const TG_BOT_TOKEN = '8649126382:AAGcnc2clQTAqEMOb4b8y7oeHWINrL8BnqU';
+  const TG
