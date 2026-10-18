@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- ОБЛОЖКА (ОТКРЫТКА) --- */
+/* --- НОВАЯ КРАСИВАЯ ОБЛОЖКА --- */
 .envelope-wrapper {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -26,12 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.envelope-wrapper.opened {
-  opacity: 0;
-  visibility: hidden;
+  perspective: 1000px;
 }
 
 .envelope {
@@ -39,25 +34,27 @@ body {
   width: 350px;
   height: 500px;
   background: #aca98c;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.5s ease;
 }
 
-/* Глубокий полукруг сверху */
+.envelope:hover {
+  transform: scale(1.02);
+}
+
+/* Текстура и узор */
 .envelope::before {
   content: '';
   position: absolute;
-  top: -250px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 450px;
-  background: #b8b59a;
-  border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%);
   z-index: 1;
 }
 
@@ -67,96 +64,57 @@ body {
   font-family: 'Marck Script', cursive;
   font-size: 48px;
   color: #fff;
-  text-align: center;
-  margin-top: 100px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Пуговица и нитка (смещены вправо) */
-.button-wrap {
+.envelope-click {
   position: relative;
-  z-index: 3;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  margin-left: 60px; /* Сдвиг вправо */
-  transition: transform 0.2s;
-}
-
-.button-wrap:hover {
-  transform: scale(1.05);
-}
-
-/* Ниточка */
-.thread-svg {
-  position: absolute;
-  top: -50px;
-  left: -80px;
-  width: 150px;
-  height: 120px;
-  z-index: -1;
-  transform: rotate(-10deg);
-}
-
-/* Сама пуговица */
-.button {
-  width: 55px;
-  height: 55px;
-  background: #4a3b2c;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  position: relative;
-}
-
-/* Дырочки на пуговице */
-.button::before, .button::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #aca98c;
-  border-radius: 50%;
-  position: absolute;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-}
-.button::before { top: 16px; left: 18px; }
-.button::after { bottom: 16px; right: 18px; }
-
-.click-text {
+  z-index: 2;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: #fff;
-  margin-top: 15px;
+  font-size: 12px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: 0.8;
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s;
+}
+
+.envelope:hover .envelope-click {
+  background: rgba(255,255,255,0.2);
+  border-color: #fff;
+  color: #fff;
 }
 
 /* Текст на обложке */
 .envelope-info {
   position: absolute;
-  bottom: 50px;
-  left: 35px;
-  right: 35px;
+  bottom: 40px;
+  left: 30px;
+  right: 30px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   z-index: 2;
   text-align: left;
 }
 
 .envelope-info div {
-  margin-bottom: 15px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: 1px dashed rgba(255,255,255,0.4);
   letter-spacing: 1px;
 }
 .envelope-info div:last-child {
   border-bottom: none;
+}
+
+.envelope-wrapper.opened {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 /* --- ОСНОВНОЙ КОНТЕНТ --- */
@@ -328,21 +286,11 @@ select.input-line {
 </head>
 <body>
 
-<!-- ОБЛОЖКА -->
+<!-- НОВАЯ ОБЛОЖКА -->
 <div class="envelope-wrapper" id="envelopeWrapper">
-  <div class="envelope">
+  <div class="envelope" onclick="openEnvelope()">
     <div class="envelope-title">Приглашение</div>
-    
-    <div class="button-wrap" onclick="openEnvelope()">
-      <!-- Нитка -->
-      <svg class="thread-svg" viewBox="0 0 100 100" fill="none" stroke="#4a3b2c" stroke-width="1.5">
-        <path d="M 80 90 C 60 80, 40 50, 50 30 C 60 10, 80 20, 90 10" />
-      </svg>
-      <!-- Пуговица -->
-      <div class="button"></div>
-      <div class="click-text">Нажмите здесь</div>
-    </div>
-
+    <div class="envelope-click">Нажмите здесь</div>
     <div class="envelope-info">
       <div>От кого: Никита и Света</div>
       <div>Кому: Близким и друзьям</div>
