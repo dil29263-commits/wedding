@@ -6,8 +6,168 @@
 <title>Свадебное приглашение</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
-.invitation-card { max-width: 450px; width: 100%; background: #f4f1ea; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+body { 
+  font-family: 'Cormorant Garamond', serif; 
+  background: #e8e6df; 
+  color: #333; 
+  margin: 0; 
+  padding: 20px; 
+  display: flex; 
+  justify-content: center; 
+  overflow-x: hidden;
+}
+
+/* --- ОБЛОЖКА (ОТКРЫТКА) --- */
+.envelope-wrapper {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #e8e6df;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.envelope-wrapper.opened {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.envelope {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  background: #aca98c;
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Полукруг сверху */
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 300px;
+  background: #b8b59a; /* Чуть светлее */
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.envelope-title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Marck Script', cursive;
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 50px;
+  margin-top: -80px;
+}
+
+/* Пуговица и нитка */
+.button-wrap {
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.thread {
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  width: 100px;
+  height: 100px;
+  border-top: 2px solid #4a3b2c;
+  border-left: 2px solid #4a3b2c;
+  border-radius: 50% 0 0 0;
+  transform: rotate(-20deg);
+  z-index: -1;
+}
+
+.button {
+  width: 60px;
+  height: 60px;
+  background: #4a3b2c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button::after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background: #aca98c;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.click-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+/* Текст на обложке */
+.envelope-info {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  right: 40px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.envelope-info div {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+}
+.envelope-info div:last-child {
+  border-bottom: none;
+}
+
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
+.invitation-card { 
+  max-width: 450px; 
+  width: 100%; 
+  background: #f4f1ea; 
+  position: relative; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+  overflow: hidden;
+  opacity: 0; /* Скрыто до открытия */
+  transition: opacity 1s ease 0.5s;
+}
+
+.invitation-card.show {
+  opacity: 1;
+}
 
 /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
 .fade-in {
@@ -121,10 +281,67 @@ select.input-line {
 .time-number { font-size: 38px; color: #3b3a32; line-height: 1; margin-bottom: 8px; }
 .time-label { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 1px; }
 @media (max-width: 400px) { .time-number { font-size: 30px; } .time-label { font-size: 10px; } .countdown-timer { gap: 10px; } }
+
+/* --- НОВЫЙ ФИНАЛЬНЫЙ БЛОК --- */
+.final-section {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background-image: url('final.png'); /* ВАША ФОТОГРАФИЯ */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 50px;
+}
+.final-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%);
+  z-index: 1;
+}
+.final-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+.final-script {
+  font-family: 'Marck Script', cursive;
+  font-size: 38px;
+  margin-bottom: 5px;
+}
+.final-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
 </style>
 </head>
 <body>
-<div class="invitation-card">
+
+<!-- ОБЛОЖКА -->
+<div class="envelope-wrapper" id="envelopeWrapper">
+  <div class="envelope">
+    <div class="envelope-title">Приглашение</div>
+    
+    <div class="button-wrap" onclick="openEnvelope()">
+      <div class="thread"></div>
+      <div class="button"></div>
+      <div class="click-text">Нажмите здесь</div>
+    </div>
+
+    <div class="envelope-info">
+      <div>От кого: Никита и Света</div>
+      <div>Кому: Близким и друзьям</div>
+    </div>
+  </div>
+</div>
+
+<!-- ОСНОВНОЙ КОНТЕНТ -->
+<div class="invitation-card" id="mainContent">
   
   <!-- Фото -->
   <div class="photo-section">
@@ -257,134 +474,4 @@ select.input-line {
         <label class="form-label">Предпочтения по напиткам</label>
         <div class="checkbox-group">
           <!-- ЧЕКБОКС "ВЫБРАТЬ ВСЁ" -->
-          <label class="custom-checkbox" style="font-weight: 500; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 5px;">
-            <input type="checkbox" id="selectAllDrinks">
-            <span class="checkbox-mark"></span> Выбрать всё
-          </label>
-          
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Шампанское"><span class="checkbox-mark"></span> Шампанское</label>
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино белое"><span class="checkbox-mark"></span> Вино белое</label>
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино красное"><span class="checkbox-mark"></span> Вино красное</label>
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Коньяк"><span class="checkbox-mark"></span> Коньяк</label>
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Самогон"><span class="checkbox-mark"></span> Самогон</label>
-          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Компот"><span class="checkbox-mark"></span> Компот</label>
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Отправить</button>
-    </form>
-    
-    <div class="countdown-section">
-      <div class="countdown-title">До встречи через</div>
-      <div class="countdown-timer">
-        <div class="time-block"><div class="time-number" id="days">00</div><div class="time-label">дней</div></div>
-        <div class="time-block"><div class="time-number" id="hours">00</div><div class="time-label">часов</div></div>
-        <div class="time-block"><div class="time-number" id="minutes">00</div><div class="time-label">минут</div></div>
-        <div class="time-block"><div class="time-number" id="seconds">00</div><div class="time-label">секунд</div></div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- СКРИПТ ТАЙМЕРА -->
-<script>
-  var endDate = new Date("2027-07-23T15:00:00").getTime();
-  
-  function updateTimer() {
-    var now = new Date().getTime();
-    var diff = endDate - now;
-    
-    if (diff > 0) {
-      var d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      var s = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      document.getElementById("days").textContent = d < 10 ? "0" + d : d;
-      document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
-      document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
-      document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
-    } else {
-      document.getElementById("days").textContent = "00";
-      document.getElementById("hours").textContent = "00";
-      document.getElementById("minutes").textContent = "00";
-      document.getElementById("seconds").textContent = "00";
-    }
-  }
-  
-  updateTimer();
-  setInterval(updateTimer, 1000);
-</script>
-
-<!-- СКРИПТ ОТПРАВКИ В GOOGLE ТАБЛИЦУ -->
-<script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
-
-  // Логика для чекбокса "Выбрать всё"
-  document.getElementById('selectAllDrinks').addEventListener('change', function() {
-    const isChecked = this.checked;
-    document.querySelectorAll('input[name="drinks"]').forEach(cb => {
-      cb.checked = isChecked;
-    });
-  });
-
-  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const btn = this.querySelector('.submit-btn');
-    btn.textContent = 'Отправка...';
-    btn.disabled = true;
-
-    const name = document.getElementById('guest-name').value;
-    const attendance = document.querySelector('input[name="attendance"]:checked').value;
-    const guests = document.getElementById('guest-count').value;
-    const drinks = [];
-    document.querySelectorAll('input[name="drinks"]:checked').forEach(cb => drinks.push(cb.value));
-
-    const data = {
-      name: name,
-      attendance: attendance,
-      guests: guests,
-      drinks: drinks.join(', ')
-    };
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-      if (result.result === 'success') {
-        alert('Спасибо! Ваш ответ отправлен.');
-        this.reset();
-      } else {
-        alert('Ошибка при отправке: ' + result.message);
-      }
-    })
-    .catch(error => {
-      alert('Ошибка сети. Попробуйте еще раз.');
-      console.error('Ошибка:', error);
-    })
-    .finally(() => {
-      btn.textContent = 'Отправить';
-      btn.disabled = false;
-    });
-  });
-</script>
-
-<!-- СКРИПТ АНИМАЦИИ ПРИ ПРОКРУТКЕ -->
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach((el) => {
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+          <label class="custom-checkbox" style="font-weight: 500;
