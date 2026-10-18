@@ -207,7 +207,6 @@ select.input-line {
       <div class="wishes-text">
         Денежные конверты будут лучшим подарком, который мы используем на исполнение наших желаний.
       </div>
-      <!-- ЗАМЕНЕН ТЕКСТ -->
       <div class="wishes-text" style="margin-bottom: 0;">
         «Мы очень просим вас не кричать на свадьбе „Горько“, пусть нам будет всю жизнь сладко». Непослушных будем штрафовать: одно "Горько" - штраф 5000руб.
       </div>
@@ -220,7 +219,7 @@ select.input-line {
     <h2 class="rsvp-title">Присутствие</h2>
     <div class="rsvp-subtitle">Пожалуйста, подтвердите ваше<br>присутствие до 23.06.2027</div>
     
-    <!-- ФОРМА (БЕЗ ОТПРАВКИ НА СЕРВЕР) -->
+    <!-- ФОРМА (ОТПРАВКА В GOOGLE ТАБЛИЦУ) -->
     <form class="rsvp-form" id="rsvpForm">
       
       <div class="form-group">
@@ -305,31 +304,51 @@ select.input-line {
   setInterval(updateTimer, 1000);
 </script>
 
-<!-- СКРИПТ ОТКРЫТИЯ MAX С ГОТОВЫМ ТЕКСТОМ -->
+<!-- СКРИПТ ОТПРАВКИ В GOOGLE ТАБЛИЦУ -->
 <script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
+
   document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    const btn = this.querySelector('.submit-btn');
+    btn.textContent = 'Отправка...';
+    btn.disabled = true;
+
     const name = document.getElementById('guest-name').value;
     const attendance = document.querySelector('input[name="attendance"]:checked').value;
     const guests = document.getElementById('guest-count').value;
     const drinks = [];
     document.querySelectorAll('input[name="drinks"]:checked').forEach(cb => drinks.push(cb.value));
 
-    // Формируем текст сообщения
-    let message = `Здравствуйте! Меня зовут ${name}.\n`;
-    message += `Присутствие: ${attendance}\n`;
-    message += `Количество гостей: ${guests}\n`;
-    message += `Напитки: ${drinks.length > 0 ? drinks.join(', ') : 'не выбраны'}`;
-    
-    // Кодируем текст для ссылки (чтобы пробелы и переносы строк работали)
-    const encodedText = encodeURIComponent(message);
-    
-    // Ссылка на ваш профиль в MAX с текстом
-    const maxLink = `https://max.ru/u/f9LHodD0cOLl8P8h5kjGtn4030O9TSJKWYvlDp3jdeFYp8dM5Xx-9LEaKs4?text=${encodedText}`;
-    
-    // Открываем MAX в новой вкладке
-    window.open(maxLink, '_blank');
+    const data = {
+      name: name,
+      attendance: attendance,
+      guests: guests,
+      drinks: drinks.join(', ') // Объединяем напитки в строку через запятую
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.result === 'success') {
+        alert('Спасибо! Ваш ответ отправлен.');
+        this.reset();
+      } else {
+        alert('Ошибка при отправке: ' + result.message);
+      }
+    })
+    .catch(error => {
+      alert('Ошибка сети. Попробуйте еще раз.');
+      console.error('Ошибка:', error);
+    })
+    .finally(() => {
+      btn.textContent = 'Отправить';
+      btn.disabled = false;
+    });
   });
 </script>
 </body>
