@@ -21,7 +21,7 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 /* Текстовая часть */
 .text-section { padding: 20px 30px 50px; text-align: center; position: relative; z-index: 4; margin-top: -20px; background: #f4f1ea; }
 .greeting { font-size: 26px; margin-bottom: 15px; font-weight: 400; }
-.invite-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; color: #444; }
+.invite-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; color: #444; }
 .date-script { font-family: 'Marck Script', cursive; font-size: 36px; color: #5b5b5b; margin: 20px 0 10px 0; }
 .calendar { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 30px 0; font-family: 'Montserrat', sans-serif; }
 .day { width: 42px; height: 42px; display: flex; justify-content: center; align-items: center; border: 1px solid #a39f84; border-radius: 6px; font-size: 16px; color: #8c8c8c; font-weight: 300; }
@@ -38,7 +38,7 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .location-title { font-family: 'Marck Script', cursive; font-size: 32px; margin-bottom: 5px; font-weight: 400; color: #fff; }
 .location-name { font-size: 24px; letter-spacing: 1px; margin-bottom: 25px; font-weight: 400; line-height: 1.4; color: #fff; }
 .location-image { width: 100%; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block; }
-.location-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; color: #fff; }
+.location-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; color: #fff; }
 .location-btn { display: inline-block; padding: 12px 30px; border: 1px solid #fff; color: #fff; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
 .location-btn:hover { background: #fff; color: #aca98c; }
 
@@ -54,18 +54,19 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .timeline-dot { position: absolute; left: 101px; top: 10px; width: 9px; height: 9px; background-color: #fff; border-radius: 50%; z-index: 2; }
 .timeline-content { flex: 1; padding-left: 35px; }
 .timeline-time { font-size: 24px; color: #fff; margin-bottom: 5px; font-weight: 400; line-height: 1.2; }
-.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); line-height: 1.5; font-weight: 300; }
+.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255, 255, 255, 0.9); line-height: 1.5; font-weight: 300; }
 
 /* Информация */
 .info-section { padding: 20px 25px 40px; text-align: center; }
 .info-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 30px; color: #fff; }
 .info-icons-top { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; }
 .info-icons-top img { width: 60px; height: auto; object-fit: contain; }
-.info-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; color: #fff; }
+.info-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; color: #fff; }
 .info-phone-icon { margin: 30px auto; }
 .info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
-.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #fff; }
-.info-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 25px; color: #fff; }
+.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #fff; }
+/* УМЕНЬШЕН НОМЕР ТЕЛЕФОНА */
+.info-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 25px; color: #fff; }
 .social-buttons { display: flex; justify-content: center; gap: 15px; }
 .social-btn { width: 45px; height: 45px; background-color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
 .social-btn:hover { transform: scale(1.1); }
@@ -74,19 +75,19 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 /* Наши пожелания */
 .wishes-section { padding: 20px 25px 40px; text-align: center; }
 .wishes-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 25px; color: #fff; }
-.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; color: #fff; }
+.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; color: #fff; }
 
 /* Блок с формой (на бежевом) */
 .rsvp-section { padding: 60px 30px 60px; background-color: #f4f1ea; text-align: center; }
 .rsvp-title { font-family: 'Marck Script', cursive; font-size: 38px; color: #3b3a32; margin-bottom: 15px; font-weight: 400; }
-.rsvp-subtitle { font-family: 'Montserrat', sans-serif; font-size: 13px; color: #555; margin-bottom: 40px; line-height: 1.6; }
+.rsvp-subtitle { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #555; margin-bottom: 40px; line-height: 1.6; }
 .rsvp-form { text-align: left; max-width: 340px; margin: 0 auto; }
 .form-group { margin-bottom: 30px; }
-.form-label { display: block; font-size: 16px; color: #3b3a32; margin-bottom: 12px; letter-spacing: 0.5px; }
+.form-label { display: block; font-size: 17px; color: #3b3a32; margin-bottom: 12px; letter-spacing: 0.5px; }
 .input-line { width: 100%; border: none; border-bottom: 1px solid #777; background: transparent; padding: 10px 0; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #333; outline: none; }
 .input-line:focus { border-bottom-color: #3b3a32; }
 .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 15px; }
-.custom-radio, .custom-checkbox { display: flex; align-items: center; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #444; }
+.custom-radio, .custom-checkbox { display: flex; align-items: center; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 15px; color: #444; }
 .custom-radio input, .custom-checkbox input { display: none; }
 .radio-mark, .checkbox-mark { width: 18px; height: 18px; border: 1px solid #777; border-radius: 50%; margin-right: 12px; display: inline-block; position: relative; flex-shrink: 0; }
 .checkbox-mark { border-radius: 2px; }
@@ -111,8 +112,8 @@ select.input-line {
 .countdown-timer { display: flex; justify-content: center; gap: 15px; font-family: 'Cormorant Garamond', serif; }
 .time-block { display: flex; flex-direction: column; align-items: center; }
 .time-number { font-size: 38px; color: #3b3a32; line-height: 1; margin-bottom: 8px; }
-.time-label { font-family: 'Montserrat', sans-serif; font-size: 10px; text-transform: uppercase; color: #777; letter-spacing: 1px; }
-@media (max-width: 400px) { .time-number { font-size: 30px; } .time-label { font-size: 9px; } .countdown-timer { gap: 10px; } }
+.time-label { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 1px; }
+@media (max-width: 400px) { .time-number { font-size: 30px; } .time-label { font-size: 10px; } .countdown-timer { gap: 10px; } }
 </style>
 </head>
 <body>
