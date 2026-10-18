@@ -30,51 +30,51 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .day.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #a39f84; z-index: -1; mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center; }
 .footer-text { font-family: 'Montserrat', sans-serif; font-size: 11px; line-height: 1.6; color: #555; letter-spacing: 1px; text-transform: uppercase; margin-top: 30px; }
 
-/* ЕДИНЫЙ БЛОК (СВЕТЛЫЙ) */
-.olive-container { background-color: #f4f1ea; color: #333; padding-top: 20px; padding-bottom: 20px; }
+/* ЕДИНЫЙ ОЛИВКОВЫЙ БЛОК */
+.olive-container { background-color: #aca98c; color: #fff; padding-top: 40px; padding-bottom: 40px; }
 
 /* Место проведения */
 .location-section { padding: 20px 25px 40px; text-align: center; }
-.location-title { font-family: 'Marck Script', cursive; font-size: 32px; margin-bottom: 5px; font-weight: 400; color: #3b3a32; }
-.location-name { font-size: 24px; letter-spacing: 1px; margin-bottom: 25px; font-weight: 400; line-height: 1.4; color: #3b3a32; }
+.location-title { font-family: 'Marck Script', cursive; font-size: 32px; margin-bottom: 5px; font-weight: 400; color: #fff; }
+.location-name { font-size: 24px; letter-spacing: 1px; margin-bottom: 25px; font-weight: 400; line-height: 1.4; color: #fff; }
 .location-image { width: 100%; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block; }
-.location-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; color: #444; }
-.location-btn { display: inline-block; padding: 12px 30px; border: 1px solid #3b3a32; color: #3b3a32; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
-.location-btn:hover { background: #3b3a32; color: #f4f1ea; }
+.location-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; color: #fff; }
+.location-btn { display: inline-block; padding: 12px 30px; border: 1px solid #fff; color: #fff; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+.location-btn:hover { background: #fff; color: #aca98c; }
 
 /* Программа дня */
 .program-section { padding: 20px 20px 40px; text-align: center; }
-.program-title { text-align: center; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 40px; color: #3b3a32; }
+.program-title { text-align: center; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 40px; color: #fff; }
 .timeline { position: relative; max-width: 340px; margin: 0 auto; text-align: left; }
-.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 25px; width: 1px; background-color: #b5b29d; }
+.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 25px; width: 1px; background-color: rgba(255, 255, 255, 0.4); }
 .timeline-item { position: relative; margin-bottom: 45px; display: flex; align-items: flex-start; min-height: 60px; }
 .timeline-item:last-child { margin-bottom: 0; }
-.timeline-icon { width: 45px; flex-shrink: 0; display: flex; justify-content: center; color: #8c8a7a; margin-top: 2px; margin-right: 45px; }
+.timeline-icon { width: 45px; flex-shrink: 0; display: flex; justify-content: center; color: #fff; margin-top: 2px; margin-right: 45px; }
 .timeline-icon svg { width: 35px; height: 35px; fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
-.timeline-dot { position: absolute; left: 101px; top: 10px; width: 9px; height: 9px; background-color: #a39f84; border-radius: 50%; z-index: 2; }
+.timeline-dot { position: absolute; left: 101px; top: 10px; width: 9px; height: 9px; background-color: #fff; border-radius: 50%; z-index: 2; }
 .timeline-content { flex: 1; padding-left: 35px; }
-.timeline-time { font-size: 24px; color: #3b3a32; margin-bottom: 5px; font-weight: 400; line-height: 1.2; }
-.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: #666; line-height: 1.5; font-weight: 300; }
+.timeline-time { font-size: 24px; color: #fff; margin-bottom: 5px; font-weight: 400; line-height: 1.2; }
+.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); line-height: 1.5; font-weight: 300; }
 
 /* Информация */
 .info-section { padding: 20px 25px 40px; text-align: center; }
-.info-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 30px; color: #3b3a32; }
+.info-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 30px; color: #fff; }
 .info-icons-top { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; }
 .info-icons-top img { width: 60px; height: auto; object-fit: contain; }
-.info-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; color: #444; }
+.info-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; color: #fff; }
 .info-phone-icon { margin: 30px auto; }
-.info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #3b3a32; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
-.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #444; }
-.info-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 25px; color: #3b3a32; }
+.info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
+.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #fff; }
+.info-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 25px; color: #fff; }
 .social-buttons { display: flex; justify-content: center; gap: 15px; }
-.social-btn { width: 45px; height: 45px; background-color: #3b3a32; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
+.social-btn { width: 45px; height: 45px; background-color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
 .social-btn:hover { transform: scale(1.1); }
-.social-btn svg { width: 22px; height: 22px; fill: #f4f1ea; }
+.social-btn svg { width: 22px; height: 22px; fill: #aca98c; }
 
 /* Наши пожелания */
 .wishes-section { padding: 20px 25px 40px; text-align: center; }
-.wishes-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 25px; color: #3b3a32; }
-.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; color: #444; }
+.wishes-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 25px; color: #fff; }
+.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; color: #fff; }
 
 /* Блок с формой (на бежевом) */
 .rsvp-section { padding: 60px 30px 60px; background-color: #f4f1ea; text-align: center; }
@@ -140,7 +140,7 @@ select.input-line {
     <div class="footer-text">Будем счастливы разделить<br>этот важный момент с вами!</div>
   </div>
 
-  <!-- ЕДИНЫЙ БЛОК (СВЕТЛЫЙ) -->
+  <!-- ЕДИНЫЙ БЛОК (ОЛИВКОВЫЙ) -->
   <div class="olive-container">
     
     <!-- Место проведения -->
@@ -218,7 +218,7 @@ select.input-line {
     <h2 class="rsvp-title">Присутствие</h2>
     <div class="rsvp-subtitle">Пожалуйста, подтвердите ваше<br>присутствие до 23.06.2027</div>
     
-    <!-- УБРАЛИ FORMSPREE, ДОБАВИЛИ ID -->
+    <!-- ФОРМА ДЛЯ ОТПРАВКИ В TELEGRAM -->
     <form class="rsvp-form" id="rsvpForm">
       
       <div class="form-group">
@@ -288,13 +288,4 @@ select.input-line {
       document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
       document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
       document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
-    }
-  }
-  updateTimer();
-  setInterval(updateTimer, 1000);
-</script>
-
-<!-- ОТПРАВКА В TELEGRAM ЧЕРЕЗ CLOUDFLARE -->
-<script>
-  const TG_BOT_TOKEN = '8649126382:AAGcnc2clQTAqEMOb4b8y7oeHWINrL8BnqU';
-  const TG
+   
