@@ -26,7 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease, visibility 1s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .envelope-wrapper.opened {
@@ -39,27 +39,25 @@ body {
   width: 350px;
   height: 500px;
   background: #aca98c;
-  border-radius: 15px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-/* Полукруг сверху */
+/* Глубокий полукруг сверху */
 .envelope::before {
   content: '';
   position: absolute;
-  top: -150px;
+  top: -250px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px;
-  height: 300px;
-  background: #b8b59a; /* Чуть светлее */
+  width: 600px;
+  height: 450px;
+  background: #b8b59a;
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   z-index: 1;
 }
 
@@ -69,11 +67,12 @@ body {
   font-family: 'Marck Script', cursive;
   font-size: 48px;
   color: #fff;
-  margin-bottom: 50px;
-  margin-top: -80px;
+  text-align: center;
+  margin-top: 100px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Пуговица и нитка */
+/* Пуговица и нитка (смещены вправо) */
 .button-wrap {
   position: relative;
   z-index: 3;
@@ -81,72 +80,79 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 60px; /* Сдвиг вправо */
+  transition: transform 0.2s;
 }
 
-.thread {
+.button-wrap:hover {
+  transform: scale(1.05);
+}
+
+/* Ниточка */
+.thread-svg {
   position: absolute;
-  top: -40px;
-  left: -60px;
-  width: 100px;
-  height: 100px;
-  border-top: 2px solid #4a3b2c;
-  border-left: 2px solid #4a3b2c;
-  border-radius: 50% 0 0 0;
-  transform: rotate(-20deg);
+  top: -50px;
+  left: -80px;
+  width: 150px;
+  height: 120px;
   z-index: -1;
+  transform: rotate(-10deg);
 }
 
+/* Сама пуговица */
 .button {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   background: #4a3b2c;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  position: relative;
 }
 
-.button:hover {
-  transform: scale(1.05);
-}
-
-.button::after {
+/* Дырочки на пуговице */
+.button::before, .button::after {
   content: '';
-  width: 15px;
-  height: 15px;
+  width: 8px;
+  height: 8px;
   background: #aca98c;
   border-radius: 50%;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+  position: absolute;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
 }
+.button::before { top: 16px; left: 18px; }
+.button::after { bottom: 16px; right: 18px; }
 
 .click-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: #fff;
   margin-top: 15px;
   text-transform: uppercase;
+  opacity: 0.8;
 }
 
 /* Текст на обложке */
 .envelope-info {
   position: absolute;
   bottom: 50px;
-  left: 40px;
-  right: 40px;
+  left: 35px;
+  right: 35px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   z-index: 2;
+  text-align: left;
 }
 
 .envelope-info div {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed rgba(255,255,255,0.5);
+  border-bottom: 1px dashed rgba(255,255,255,0.4);
   letter-spacing: 1px;
 }
 .envelope-info div:last-child {
@@ -161,8 +167,8 @@ body {
   position: relative; 
   box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
   overflow: hidden;
-  opacity: 0; /* Скрыто до открытия */
-  transition: opacity 1s ease 0.5s;
+  opacity: 0; 
+  transition: opacity 0.8s ease 0.3s;
 }
 
 .invitation-card.show {
@@ -282,7 +288,7 @@ select.input-line {
 .time-label { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 1px; }
 @media (max-width: 400px) { .time-number { font-size: 30px; } .time-label { font-size: 10px; } .countdown-timer { gap: 10px; } }
 
-/* --- НОВЫЙ ФИНАЛЬНЫЙ БЛОК --- */
+/* --- ФИНАЛЬНЫЙ БЛОК --- */
 .final-section {
   position: relative;
   width: 100%;
@@ -328,7 +334,11 @@ select.input-line {
     <div class="envelope-title">Приглашение</div>
     
     <div class="button-wrap" onclick="openEnvelope()">
-      <div class="thread"></div>
+      <!-- Нитка -->
+      <svg class="thread-svg" viewBox="0 0 100 100" fill="none" stroke="#4a3b2c" stroke-width="1.5">
+        <path d="M 80 90 C 60 80, 40 50, 50 30 C 60 10, 80 20, 90 10" />
+      </svg>
+      <!-- Пуговица -->
       <div class="button"></div>
       <div class="click-text">Нажмите здесь</div>
     </div>
@@ -519,6 +529,9 @@ select.input-line {
     // Показываем основной контент
     document.getElementById('mainContent').classList.add('show');
     
+    // Принудительно прокручиваем страницу в самый верх
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Запускаем анимацию появления для блоков, которые сразу видны
     setTimeout(() => {
       document.querySelectorAll('.fade-in').forEach(el => {
