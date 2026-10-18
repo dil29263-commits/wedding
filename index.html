@@ -65,7 +65,6 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .info-phone-icon { margin: 30px auto; }
 .info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
 .info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #fff; }
-/* УМЕНЬШЕН НОМЕР ТЕЛЕФОНА */
 .info-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 25px; color: #fff; }
 .social-buttons { display: flex; justify-content: center; gap: 15px; }
 .social-btn { width: 45px; height: 45px; background-color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
@@ -250,6 +249,12 @@ select.input-line {
       <div class="form-group">
         <label class="form-label">Предпочтения по напиткам</label>
         <div class="checkbox-group">
+          <!-- ДОБАВЛЕН ЧЕКБОКС "ВЫБРАТЬ ВСЁ" -->
+          <label class="custom-checkbox" style="font-weight: 500; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 5px;">
+            <input type="checkbox" id="selectAllDrinks">
+            <span class="checkbox-mark"></span> Выбрать всё
+          </label>
+          
           <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Шампанское"><span class="checkbox-mark"></span> Шампанское</label>
           <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино белое"><span class="checkbox-mark"></span> Вино белое</label>
           <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино красное"><span class="checkbox-mark"></span> Вино красное</label>
@@ -308,6 +313,14 @@ select.input-line {
 <script>
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
 
+  // Логика для чекбокса "Выбрать всё"
+  document.getElementById('selectAllDrinks').addEventListener('change', function() {
+    const isChecked = this.checked;
+    document.querySelectorAll('input[name="drinks"]').forEach(cb => {
+      cb.checked = isChecked;
+    });
+  });
+
   document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -325,7 +338,7 @@ select.input-line {
       name: name,
       attendance: attendance,
       guests: guests,
-      drinks: drinks.join(', ') // Объединяем напитки в строку через запятую
+      drinks: drinks.join(', ')
     };
 
     fetch(SCRIPT_URL, {
