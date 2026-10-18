@@ -219,7 +219,7 @@ input[type=range]::-moz-range-thumb {
   opacity: 1;
 }
 
-/* АНИМАЦИЯ ПОЯВЛЕНИЯ (БУДЕТ СРАБАТЫВАТЬ КАЖДЫЙ РАЗ) */
+/* АНИМАЦИЯ ПОЯВЛЕНИЯ */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -234,19 +234,29 @@ input[type=range]::-moz-range-thumb {
 .photo-section { position: relative; width: 100%; height: 500px; background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
 .photo-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.2); z-index: 1; }
 
-/* ИЗМЕНЕН ШРИФТ ИМЕН */
+/* ИСПРАВЛЕНЫ ШРИФТЫ И РАЗМЕРЫ */
 .names { 
   position: relative; 
   z-index: 2; 
   color: #fff; 
   font-family: 'Marck Script', cursive; 
-  font-size: 48px; 
+  font-size: 36px; /* Уменьшен размер */
   letter-spacing: 2px; 
   font-weight: 400; 
   margin: 0; 
   text-shadow: 1px 1px 5px rgba(0,0,0,0.4); 
+  white-space: nowrap; /* Запрет на перенос строки */
 }
-.subtitle { position: relative; z-index: 2; color: #fff; font-family: 'Marck Script', cursive; font-size: 24px; margin-top: 5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+.subtitle { 
+  position: relative; 
+  z-index: 2; 
+  color: #fff; 
+  font-family: 'Marck Script', cursive; 
+  font-size: 20px; /* Уменьшен размер */
+  margin-top: 5px; 
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
+  white-space: nowrap;
+}
 
 /* Рваный край только для фото */
 .torn-edge-bottom { position: absolute; bottom: -2px; left: 0; width: 100%; height: 25px; z-index: 3; background: #f4f1ea; mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,115.57,187.35,95.24,234.36,78.14,277.54,62.2,321.39,56.44Z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,115.57,187.35,95.24,234.36,78.14,277.54,62.2,321.39,56.44Z'/%3E%3C/svg%3E"); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
@@ -379,8 +389,9 @@ select.input-line {
 /* ИЗМЕНЕН ШРИФТ ФИНАЛЬНЫХ ИМЕН */
 .final-names {
   font-family: 'Marck Script', cursive;
-  font-size: 42px;
+  font-size: 36px; /* Уменьшен размер */
   letter-spacing: 1px;
+  white-space: nowrap; /* Запрет на перенос */
 }
 </style>
 </head>
@@ -591,10 +602,8 @@ select.input-line {
   const volumeSlider = document.getElementById('volumeSlider');
   let isPlaying = false;
 
-  // Установка начальной громкости
   music.volume = 0.5;
 
-  // Логика открытия конверта
   function openEnvelope() {
     document.getElementById('envelopeWrapper').classList.add('opened');
     document.getElementById('mainContent').classList.add('show');
@@ -615,7 +624,6 @@ select.input-line {
     }, 100);
   }
 
-  // Включение/выключение музыки
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
@@ -627,12 +635,10 @@ select.input-line {
     isPlaying = !isPlaying;
   }
 
-  // Изменение громкости
   function changeVolume(val) {
     music.volume = val;
   }
 
-  // Скрипт таймера
   var endDate = new Date("2027-07-23T15:00:00").getTime();
   
   function updateTimer() {
@@ -660,7 +666,6 @@ select.input-line {
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // Отправка формы в Google Таблицу
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
 
   document.getElementById('selectAllDrinks').addEventListener('change', function() {
@@ -713,13 +718,12 @@ select.input-line {
     });
   });
 
-  // ИСПРАВЛЕННЫЙ СКРИПТ АНИМАЦИИ
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       } else {
-        entry.target.classList.remove('visible'); // Удаляем класс, когда блок уходит за экран
+        entry.target.classList.remove('visible');
       }
     });
   }, { threshold: 0.1 });
