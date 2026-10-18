@@ -240,11 +240,11 @@ input[type=range]::-moz-range-thumb {
   z-index: 2; 
   color: #fff; 
   font-family: 'Marck Script', cursive; 
-  font-size: 32px; /* Еще меньше */
-  letter-spacing: 2px; 
+  font-size: 28px; /* Еще меньше */
+  letter-spacing: 1px; 
   font-weight: 400; 
   margin: 0; 
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.4); 
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
   white-space: nowrap;
 }
 .subtitle { 
@@ -252,9 +252,9 @@ input[type=range]::-moz-range-thumb {
   z-index: 2; 
   color: #fff; 
   font-family: 'Marck Script', cursive; 
-  font-size: 18px; /* Еще меньше */
+  font-size: 16px; /* Еще меньше */
   margin-top: 5px; 
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
   white-space: nowrap;
 }
 
@@ -382,14 +382,14 @@ select.input-line {
 }
 .final-script {
   font-family: 'Marck Script', cursive;
-  font-size: 34px;
+  font-size: 30px; /* Уменьшено */
   margin-bottom: 5px;
 }
 
 /* УМЕНЬШЕНЫ ШРИФТЫ ФИНАЛЬНЫХ ИМЕН */
 .final-names {
   font-family: 'Marck Script', cursive;
-  font-size: 32px; /* Еще меньше */
+  font-size: 28px; /* Еще меньше */
   letter-spacing: 1px;
   white-space: nowrap;
 }
@@ -718,12 +718,12 @@ select.input-line {
     });
   });
 
-  // АНИМАЦИЯ ПОЯВЛЕНИЯ (СРАБАТЫВАЕТ 1 РАЗ)
+  // АНИМАЦИЯ ПОЯВЛЕНИЯ (ОДИН РАЗ)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Останавливаем наблюдение, чтобы больше не исчезал
+        observer.unobserve(entry.target); 
       }
     });
   }, { threshold: 0.1 });
