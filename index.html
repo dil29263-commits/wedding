@@ -9,6 +9,17 @@
 body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
 .invitation-card { max-width: 450px; width: 100%; background: #f4f1ea; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
 
+/* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Фото */
 .photo-section { position: relative; width: 100%; height: 500px; background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
 .photo-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.2); z-index: 1; }
@@ -45,8 +56,9 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 /* Программа дня */
 .program-section { padding: 20px 20px 40px; text-align: center; }
 .program-title { text-align: center; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 40px; color: #fff; }
-.timeline { position: relative; max-width: 340px; margin: 0 auto; text-align: left; }
-.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 25px; width: 1px; background-color: rgba(255, 255, 255, 0.4); }
+.timeline { position: relative; max-width: 340px; margin: 0 auto; text-align: left; padding-bottom: 20px; }
+.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 45px; width: 1px; background-color: rgba(255, 255, 255, 0.4); }
+.timeline::after { content: ''; position: absolute; left: 101px; bottom: 41px; width: 9px; height: 9px; background-color: #fff; border-radius: 50%; z-index: 2; }
 .timeline-item { position: relative; margin-bottom: 45px; display: flex; align-items: flex-start; min-height: 60px; }
 .timeline-item:last-child { margin-bottom: 0; }
 .timeline-icon { width: 45px; flex-shrink: 0; display: flex; justify-content: center; color: #fff; margin-top: 2px; margin-right: 45px; }
@@ -65,11 +77,7 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .info-phone-icon { margin: 30px auto; }
 .info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
 .info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #fff; }
-.info-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 25px; color: #fff; }
-.social-buttons { display: flex; justify-content: center; gap: 15px; }
-.social-btn { width: 45px; height: 45px; background-color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
-.social-btn:hover { transform: scale(1.1); }
-.social-btn svg { width: 22px; height: 22px; fill: #aca98c; }
+.info-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 0; color: #fff; }
 
 /* Наши пожелания */
 .wishes-section { padding: 20px 25px 40px; text-align: center; }
@@ -126,7 +134,7 @@ select.input-line {
   </div>
 
   <!-- Верхний текст -->
-  <div class="text-section">
+  <div class="text-section fade-in">
     <div class="greeting">Дорогие и любимые!</div>
     <div class="invite-text">Приглашаем вас на нашу свадьбу,<br>которая состоится:</div>
     <div class="date-script">23 июля 2027</div>
@@ -144,7 +152,7 @@ select.input-line {
   <div class="olive-container">
     
     <!-- Место проведения -->
-    <div class="location-section">
+    <div class="location-section fade-in">
       <h2 class="location-title">Место проведения</h2>
       <div class="location-name">Банкетный зал<br>«Milana»</div>
       <img src="zal.png" alt="Банкетный зал Милана" class="location-image">
@@ -153,7 +161,7 @@ select.input-line {
     </div>
 
     <!-- Программа дня -->
-    <div class="program-section">
+    <div class="program-section fade-in">
       <h2 class="program-title">Программа дня</h2>
       <div class="timeline">
         <div class="timeline-item">
@@ -184,7 +192,7 @@ select.input-line {
     </div>
 
     <!-- Информация -->
-    <div class="info-section">
+    <div class="info-section fade-in">
       <h2 class="info-title">Информация</h2>
       <div class="info-icons-top">
         <img src="rose.png" alt="Роза">
@@ -194,14 +202,13 @@ select.input-line {
       
       <div class="info-phone-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/><path d="M8 10h8M8 14h8"/><path d="M12 6c-1 0-2 .5-2 1.5S11 9 12 9s2-.5 2-1.5S13 6 12 6z"/></svg></div>
       <div class="info-contact-text">Если у вас возникли вопрос или вы<br>готовите творческий подарок, свяжитесь<br>заранее с нашим организатором:</div>
+      
       <div class="info-name">Татьяна +7 962 020-08-69</div>
-      <div class="social-buttons">
-        <a href="https://max.ru/u/f9LHodD0cOLl8P8h5kjGtn4030O9TSJKWYvlDp3jdeFYp8dM5Xx-9LEaKs4" target="_blank" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#aca98c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8M12 8v8"></path></svg></a>
-      </div>
+      
     </div>
 
     <!-- Наши пожелания -->
-    <div class="wishes-section">
+    <div class="wishes-section fade-in">
       <h2 class="wishes-title">Наши пожелания</h2>
       <div class="wishes-text">
         Денежные конверты будут лучшим подарком, который мы используем на исполнение наших желаний.
@@ -214,7 +221,7 @@ select.input-line {
   </div>
 
   <!-- Форма присутствия -->
-  <div class="rsvp-section">
+  <div class="rsvp-section fade-in">
     <h2 class="rsvp-title">Присутствие</h2>
     <div class="rsvp-subtitle">Пожалуйста, подтвердите ваше<br>присутствие до 23.06.2027</div>
     
@@ -249,7 +256,7 @@ select.input-line {
       <div class="form-group">
         <label class="form-label">Предпочтения по напиткам</label>
         <div class="checkbox-group">
-          <!-- ДОБАВЛЕН ЧЕКБОКС "ВЫБРАТЬ ВСЁ" -->
+          <!-- ЧЕКБОКС "ВЫБРАТЬ ВСЁ" -->
           <label class="custom-checkbox" style="font-weight: 500; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 5px;">
             <input type="checkbox" id="selectAllDrinks">
             <span class="checkbox-mark"></span> Выбрать всё
@@ -362,6 +369,21 @@ select.input-line {
       btn.textContent = 'Отправить';
       btn.disabled = false;
     });
+  });
+</script>
+
+<!-- СКРИПТ АНИМАЦИИ ПРИ ПРОКРУТКЕ -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
   });
 </script>
 </body>
