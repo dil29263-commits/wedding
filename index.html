@@ -474,4 +474,155 @@ select.input-line {
         <label class="form-label">Предпочтения по напиткам</label>
         <div class="checkbox-group">
           <!-- ЧЕКБОКС "ВЫБРАТЬ ВСЁ" -->
-          <label class="custom-checkbox" style="font-weight: 500;
+          <label class="custom-checkbox" style="font-weight: 500; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 5px;">
+            <input type="checkbox" id="selectAllDrinks">
+            <span class="checkbox-mark"></span> Выбрать всё
+          </label>
+          
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Шампанское"><span class="checkbox-mark"></span> Шампанское</label>
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино белое"><span class="checkbox-mark"></span> Вино белое</label>
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Вино красное"><span class="checkbox-mark"></span> Вино красное</label>
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Коньяк"><span class="checkbox-mark"></span> Коньяк</label>
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Самогон"><span class="checkbox-mark"></span> Самогон</label>
+          <label class="custom-checkbox"><input type="checkbox" name="drinks" value="Компот"><span class="checkbox-mark"></span> Компот</label>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Отправить</button>
+    </form>
+    
+    <div class="countdown-section">
+      <div class="countdown-title">До встречи через</div>
+      <div class="countdown-timer">
+        <div class="time-block"><div class="time-number" id="days">00</div><div class="time-label">дней</div></div>
+        <div class="time-block"><div class="time-number" id="hours">00</div><div class="time-label">часов</div></div>
+        <div class="time-block"><div class="time-number" id="minutes">00</div><div class="time-label">минут</div></div>
+        <div class="time-block"><div class="time-number" id="seconds">00</div><div class="time-label">секунд</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- НОВЫЙ ФИНАЛЬНЫЙ БЛОК С ФОТО -->
+  <div class="final-section">
+    <div class="final-text">
+      <div class="final-script">С любовью,</div>
+      <div class="final-names">Никита и Света</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Логика открытия конверта
+  function openEnvelope() {
+    // Скрываем обложку
+    document.getElementById('envelopeWrapper').classList.add('opened');
+    // Показываем основной контент
+    document.getElementById('mainContent').classList.add('show');
+    
+    // Запускаем анимацию появления для блоков, которые сразу видны
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('visible');
+        }
+      });
+    }, 100);
+  }
+
+  // Скрипт таймера
+  var endDate = new Date("2027-07-23T15:00:00").getTime();
+  
+  function updateTimer() {
+    var now = new Date().getTime();
+    var diff = endDate - now;
+    
+    if (diff > 0) {
+      var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var s = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById("days").textContent = d < 10 ? "0" + d : d;
+      document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
+      document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
+      document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
+    } else {
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+    }
+  }
+  
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  // Отправка формы в Google Таблицу
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
+
+  // Логика для чекбокса "Выбрать всё"
+  document.getElementById('selectAllDrinks').addEventListener('change', function() {
+    const isChecked = this.checked;
+    document.querySelectorAll('input[name="drinks"]').forEach(cb => {
+      cb.checked = isChecked;
+    });
+  });
+
+  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btn = this.querySelector('.submit-btn');
+    btn.textContent = 'Отправка...';
+    btn.disabled = true;
+
+    const name = document.getElementById('guest-name').value;
+    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+    const guests = document.getElementById('guest-count').value;
+    const drinks = [];
+    document.querySelectorAll('input[name="drinks"]:checked').forEach(cb => drinks.push(cb.value));
+
+    const data = {
+      name: name,
+      attendance: attendance,
+      guests: guests,
+      drinks: drinks.join(', ')
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.result === 'success') {
+        alert('Спасибо! Ваш ответ отправлен.');
+        this.reset();
+      } else {
+        alert('Ошибка при отправке: ' + result.message);
+      }
+    })
+    .catch(error => {
+      alert('Ошибка сети. Попробуйте еще раз.');
+      console.error('Ошибка:', error);
+    })
+    .finally(() => {
+      btn.textContent = 'Отправить';
+      btn.disabled = false;
+    });
+  });
+
+  // Анимация при прокрутке
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
