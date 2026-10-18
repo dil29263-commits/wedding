@@ -115,39 +115,92 @@ body {
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* --- КНОПКА МУЗЫКИ --- */
-.music-btn {
+/* --- ПАНЕЛЬ МУЗЫКИ --- */
+.music-panel {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 45px;
-  height: 45px;
-  background: #aca98c;
-  border-radius: 50%;
+  background: rgba(172, 169, 140, 0.95);
+  border-radius: 30px;
+  padding: 10px 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s ease;
 }
 
-.music-btn.show {
+.music-panel.show {
   opacity: 1;
   visibility: visible;
 }
 
+.music-btn {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
 .music-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: #fff;
+  transition: opacity 0.3s;
 }
 
 .music-btn.paused svg {
   opacity: 0.5;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 80px;
+  background: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.4);
+  border-radius: 2px;
+}
+input[type=range]::-webkit-slider-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.4);
+  border-radius: 2px;
+}
+input[type=range]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* --- ОСНОВНОЙ КОНТЕНТ --- */
@@ -166,7 +219,7 @@ body {
   opacity: 1;
 }
 
-/* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+/* АНИМАЦИЯ ПОЯВЛЕНИЯ (БУДЕТ СРАБАТЫВАТЬ КАЖДЫЙ РАЗ) */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -180,7 +233,19 @@ body {
 /* Фото */
 .photo-section { position: relative; width: 100%; height: 500px; background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
 .photo-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.2); z-index: 1; }
-.names { position: relative; z-index: 2; color: #fff; font-size: 32px; letter-spacing: 3px; text-transform: uppercase; font-weight: 400; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+
+/* ИЗМЕНЕН ШРИФТ ИМЕН */
+.names { 
+  position: relative; 
+  z-index: 2; 
+  color: #fff; 
+  font-family: 'Marck Script', cursive; 
+  font-size: 48px; 
+  letter-spacing: 2px; 
+  font-weight: 400; 
+  margin: 0; 
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.4); 
+}
 .subtitle { position: relative; z-index: 2; color: #fff; font-family: 'Marck Script', cursive; font-size: 24px; margin-top: 5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
 
 /* Рваный край только для фото */
@@ -310,10 +375,12 @@ select.input-line {
   font-size: 38px;
   margin-bottom: 5px;
 }
+
+/* ИЗМЕНЕН ШРИФТ ФИНАЛЬНЫХ ИМЕН */
 .final-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  letter-spacing: 2px;
+  font-family: 'Marck Script', cursive;
+  font-size: 42px;
+  letter-spacing: 1px;
 }
 </style>
 </head>
@@ -324,11 +391,14 @@ select.input-line {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- КНОПКА УПРАВЛЕНИЯ МУЗЫКОЙ -->
-<div class="music-btn" id="musicBtn" onclick="toggleMusic()">
-  <svg id="musicIcon" viewBox="0 0 24 24">
-    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-  </svg>
+<!-- ПАНЕЛЬ УПРАВЛЕНИЯ МУЗЫКОЙ -->
+<div class="music-panel" id="musicPanel">
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+    <svg id="musicIcon" viewBox="0 0 24 24">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </button>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" oninput="changeVolume(this.value)">
 </div>
 
 <!-- ОБЛОЖКА -->
@@ -348,7 +418,7 @@ select.input-line {
   
   <!-- Фото -->
   <div class="photo-section">
-    <h1 class="names">НИКИТА И СВЕТА</h1>
+    <h1 class="names">Никита и Света</h1>
     <div class="subtitle">две души, одна история</div>
     <div class="torn-edge-bottom"></div>
   </div>
@@ -517,25 +587,25 @@ select.input-line {
 <script>
   const music = document.getElementById('bgMusic');
   const musicBtn = document.getElementById('musicBtn');
+  const musicPanel = document.getElementById('musicPanel');
+  const volumeSlider = document.getElementById('volumeSlider');
   let isPlaying = false;
+
+  // Установка начальной громкости
+  music.volume = 0.5;
 
   // Логика открытия конверта
   function openEnvelope() {
-    // Скрываем обложку
     document.getElementById('envelopeWrapper').classList.add('opened');
-    // Показываем основной контент
     document.getElementById('mainContent').classList.add('show');
     
-    // Запускаем музыку (браузеры разрешают это после клика)
     music.play();
     isPlaying = true;
-    musicBtn.classList.add('show');
+    musicPanel.classList.add('show');
     musicBtn.classList.remove('paused');
 
-    // Принудительно прокручиваем страницу в самый верх
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Запускаем анимацию появления для блоков, которые сразу видны
     setTimeout(() => {
       document.querySelectorAll('.fade-in').forEach(el => {
         if (el.getBoundingClientRect().top < window.innerHeight) {
@@ -545,7 +615,7 @@ select.input-line {
     }, 100);
   }
 
-  // Функция включения/выключения музыки
+  // Включение/выключение музыки
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
@@ -555,6 +625,11 @@ select.input-line {
       musicBtn.classList.remove('paused');
     }
     isPlaying = !isPlaying;
+  }
+
+  // Изменение громкости
+  function changeVolume(val) {
+    music.volume = val;
   }
 
   // Скрипт таймера
@@ -588,7 +663,6 @@ select.input-line {
   // Отправка формы в Google Таблицу
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx41wbL8gmPOkhPMMroTKFs_Zu0iYXgKhZkX38W2nItsOqkdDwWBjU--Kncq2rmm_BU4A/exec';
 
-  // Логика для чекбокса "Выбрать всё"
   document.getElementById('selectAllDrinks').addEventListener('change', function() {
     const isChecked = this.checked;
     document.querySelectorAll('input[name="drinks"]').forEach(cb => {
@@ -639,11 +713,13 @@ select.input-line {
     });
   });
 
-  // Анимация при прокрутке
+  // ИСПРАВЛЕННЫЙ СКРИПТ АНИМАЦИИ
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible'); // Удаляем класс, когда блок уходит за экран
       }
     });
   }, { threshold: 0.1 });
