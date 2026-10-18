@@ -273,19 +273,76 @@ select.input-line {
 
 </div>
 
-<!-- ТАЙМЕР -->
+<!-- СКРИПТ ТАЙМЕРА (ПОЛНОСТЬЮ ИСПРАВЛЕН) -->
 <script>
   var endDate = new Date("2027-07-23T15:00:00").getTime();
+  
   function updateTimer() {
     var now = new Date().getTime();
     var diff = endDate - now;
+    
     if (diff > 0) {
       var d = Math.floor(diff / (1000 * 60 * 60 * 24));
       var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       var s = Math.floor((diff % (1000 * 60)) / 1000);
+      
       document.getElementById("days").textContent = d < 10 ? "0" + d : d;
       document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
       document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
       document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
-   
+    } else {
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+    }
+  }
+  
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+<!-- СКРИПТ ОТПРАВКИ В TELEGRAM -->
+<script>
+  const TG_BOT_TOKEN = '8649126382:AAGcnc2clQTAqEMOb4b8y7oeHWINrL8BnqU';
+  const TG_CHAT_ID = '936800669';
+  const PROXY_URL = 'https://autumn-glitter-d174.dil29263.workers.dev';
+
+  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('guest-name').value;
+    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+    const guests = document.getElementById('guest-count').value;
+    const drinks = [];
+    document.querySelectorAll('input[name="drinks"]:checked').forEach(cb => drinks.push(cb.value));
+
+    let message = `🎉 *Новый ответ на приглашение!*\n\n`;
+    message += `👤 *Имя:* ${name}\n`;
+    message += `✅ *Присутствие:* ${attendance}\n`;
+    message += `👥 *Гостей:* ${guests}\n`;
+    message += `🍷 *Напитки:* ${drinks.length > 0 ? drinks.join(', ') : 'Не выбраны'}`;
+
+    fetch(`${PROXY_URL}/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown'
+      })
+    })
+    .then(res => {
+      if (res.ok) {
+        alert('Спасибо! Ваш ответ отправлен.');
+        this.reset();
+      } else {
+        alert('Ошибка при отправке.');
+      }
+    })
+    .catch(() => alert('Ошибка сети.'));
+  });
+</script>
+</body>
+</html>
