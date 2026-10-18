@@ -30,51 +30,51 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .day.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #a39f84; z-index: -1; mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center; }
 .footer-text { font-family: 'Montserrat', sans-serif; font-size: 11px; line-height: 1.6; color: #555; letter-spacing: 1px; text-transform: uppercase; margin-top: 30px; }
 
-/* ЕДИНЫЙ ОЛИВКОВЫЙ БЛОК */
-.olive-container { background-color: #aca98c; color: #fff; padding-top: 40px; padding-bottom: 40px; }
+/* ЕДИНЫЙ БЛОК (СВЕТЛЫЙ) */
+.olive-container { background-color: #f4f1ea; color: #333; padding-top: 20px; padding-bottom: 20px; }
 
 /* Место проведения */
 .location-section { padding: 20px 25px 40px; text-align: center; }
-.location-title { font-family: 'Marck Script', cursive; font-size: 32px; margin-bottom: 5px; font-weight: 400; }
-.location-name { font-size: 24px; letter-spacing: 1px; margin-bottom: 25px; font-weight: 400; line-height: 1.4; }
+.location-title { font-family: 'Marck Script', cursive; font-size: 32px; margin-bottom: 5px; font-weight: 400; color: #3b3a32; }
+.location-name { font-size: 24px; letter-spacing: 1px; margin-bottom: 25px; font-weight: 400; line-height: 1.4; color: #3b3a32; }
 .location-image { width: 100%; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block; }
-.location-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; }
-.location-btn { display: inline-block; padding: 12px 30px; border: 1px solid #fff; color: #fff; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
-.location-btn:hover { background: #fff; color: #aca98c; }
+.location-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 25px; letter-spacing: 0.5px; color: #444; }
+.location-btn { display: inline-block; padding: 12px 30px; border: 1px solid #3b3a32; color: #3b3a32; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+.location-btn:hover { background: #3b3a32; color: #f4f1ea; }
 
 /* Программа дня */
 .program-section { padding: 20px 20px 40px; text-align: center; }
-.program-title { text-align: center; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 40px; color: #fff; }
+.program-title { text-align: center; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 40px; color: #3b3a32; }
 .timeline { position: relative; max-width: 340px; margin: 0 auto; text-align: left; }
-.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 25px; width: 1px; background-color: rgba(255, 255, 255, 0.4); }
+.timeline::before { content: ''; position: absolute; left: 105px; top: 15px; bottom: 25px; width: 1px; background-color: #b5b29d; }
 .timeline-item { position: relative; margin-bottom: 45px; display: flex; align-items: flex-start; min-height: 60px; }
 .timeline-item:last-child { margin-bottom: 0; }
-.timeline-icon { width: 45px; flex-shrink: 0; display: flex; justify-content: center; color: #fff; margin-top: 2px; margin-right: 45px; }
+.timeline-icon { width: 45px; flex-shrink: 0; display: flex; justify-content: center; color: #8c8a7a; margin-top: 2px; margin-right: 45px; }
 .timeline-icon svg { width: 35px; height: 35px; fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
-.timeline-dot { position: absolute; left: 101px; top: 10px; width: 9px; height: 9px; background-color: #fff; border-radius: 50%; z-index: 2; }
+.timeline-dot { position: absolute; left: 101px; top: 10px; width: 9px; height: 9px; background-color: #a39f84; border-radius: 50%; z-index: 2; }
 .timeline-content { flex: 1; padding-left: 35px; }
-.timeline-time { font-size: 24px; color: #fff; margin-bottom: 5px; font-weight: 400; line-height: 1.2; }
-.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); line-height: 1.5; font-weight: 300; }
+.timeline-time { font-size: 24px; color: #3b3a32; margin-bottom: 5px; font-weight: 400; line-height: 1.2; }
+.timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: #666; line-height: 1.5; font-weight: 300; }
 
 /* Информация */
 .info-section { padding: 20px 25px 40px; text-align: center; }
-.info-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 30px; color: #fff; }
+.info-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 30px; color: #3b3a32; }
 .info-icons-top { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; }
 .info-icons-top img { width: 60px; height: auto; object-fit: contain; }
-.info-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; }
+.info-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 30px; padding: 0 10px; color: #444; }
 .info-phone-icon { margin: 30px auto; }
-.info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
-.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; }
-.info-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 25px; }
+.info-phone-icon svg { width: 50px; height: 50px; fill: none; stroke: #3b3a32; stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
+.info-contact-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 20px; padding: 0 10px; color: #444; }
+.info-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 25px; color: #3b3a32; }
 .social-buttons { display: flex; justify-content: center; gap: 15px; }
-.social-btn { width: 45px; height: 45px; background-color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
+.social-btn { width: 45px; height: 45px; background-color: #3b3a32; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
 .social-btn:hover { transform: scale(1.1); }
-.social-btn svg { width: 22px; height: 22px; fill: #aca98c; }
+.social-btn svg { width: 22px; height: 22px; fill: #f4f1ea; }
 
-/* Наши пожелания - УБРАНА ЛИНИЯ */
+/* Наши пожелания */
 .wishes-section { padding: 20px 25px 40px; text-align: center; }
-.wishes-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 25px; color: #fff; }
-.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; }
+.wishes-title { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 25px; color: #3b3a32; }
+.wishes-text { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.8; font-weight: 300; margin-bottom: 15px; padding: 0 10px; color: #444; }
 
 /* Блок с формой (на бежевом) */
 .rsvp-section { padding: 60px 30px 60px; background-color: #f4f1ea; text-align: center; }
@@ -94,6 +94,16 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
 .custom-checkbox input:checked + .checkbox-mark::after { content: '✓'; position: absolute; top: -5px; left: 2px; color: #3b3a32; font-size: 18px; font-weight: bold; }
 .submit-btn { display: block; width: 100%; background-color: #3e2b1e; color: #fff; border: none; padding: 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; margin-top: 40px; cursor: pointer; transition: background-color 0.3s; }
 .submit-btn:hover { background-color: #2b1e14; }
+
+/* Стили для выпадающего списка (количество гостей) */
+select.input-line {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b3a32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0px center;
+  background-size: 16px;
+}
 
 /* Таймер */
 .countdown-section { margin-top: 60px; text-align: center; }
@@ -130,7 +140,7 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
     <div class="footer-text">Будем счастливы разделить<br>этот важный момент с вами!</div>
   </div>
 
-  <!-- ЕДИНЫЙ ОЛИВКОВЫЙ БЛОК -->
+  <!-- ЕДИНЫЙ БЛОК (СВЕТЛЫЙ) -->
   <div class="olive-container">
     
     <!-- Место проведения -->
@@ -180,20 +190,25 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
         <img src="rose.png" alt="Роза">
         <img src="bottle.png" alt="Бутылка">
       </div>
+      <!-- ЗАМЕНЕН ТЕКСТ -->
       <div class="info-text">Просим не дарить нам цветы.<br>Вместо цветов будем рады бутылочке<br>креативного алкоголя.</div>
+      
       <div class="info-phone-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/><path d="M8 10h8M8 14h8"/><path d="M12 6c-1 0-2 .5-2 1.5S11 9 12 9s2-.5 2-1.5S13 6 12 6z"/></svg></div>
       <div class="info-contact-text">Если у вас возникли вопрос или вы<br>готовите творческий подарок, свяжитесь<br>заранее с нашим организатором:</div>
       <div class="info-name">Татьяна +7 962 020-08-69</div>
+      <div class="social-buttons">
+        <a href="https://wa.me/79620200869" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
     </div>
 
     <!-- Наши пожелания -->
     <div class="wishes-section">
       <h2 class="wishes-title">Наши пожелания</h2>
       <div class="wishes-text">
-        Денежные конверты будут лучшим подарком, который мы используем на исполнение нашей мечты.
+        Денежные конверты будут лучшим подарком, который мы используем на исполнение наших желаний.
       </div>
       <div class="wishes-text" style="margin-bottom: 0;">
-        Будем благодарны, если Вы воздержитесь от криков «Горько» на празднике, ведь оно будет штрафоваться в размере 5000р так-как поцелуй - знак выражения чувств, он не может быть по заказу.
+        Будем благодарны, если Вы воздержитесь от криков «Горько» на празднике, ведь поцелуй - знак выражения чувств, он не может быть по заказу.
       </div>
     </div>
 
@@ -204,10 +219,12 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
     <h2 class="rsvp-title">Присутствие</h2>
     <div class="rsvp-subtitle">Пожалуйста, подтвердите ваше<br>присутствие до 23.06.2027</div>
     <form class="rsvp-form" action="https://formspree.io/f/maeqkoag" method="POST">
+      
       <div class="form-group">
         <label class="form-label" for="guest-name">Ваше имя и фамилия</label>
         <input type="text" id="guest-name" name="name" class="input-line" required>
       </div>
+
       <div class="form-group">
         <label class="form-label">Сможете ли вы присутствовать?</label>
         <div class="radio-group">
@@ -215,6 +232,19 @@ body { font-family: 'Cormorant Garamond', serif; background: #e8e6df; color: #33
           <label class="custom-radio"><input type="radio" name="attendance" value="Не смогу"><span class="radio-mark"></span> Не смогу присутствовать</label>
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="form-label" for="guest-count">Количество гостей (включая вас)</label>
+        <select id="guest-count" name="guests" class="input-line" required>
+          <option value="" disabled selected>Выберите количество</option>
+          <option value="1">1 человек</option>
+          <option value="2">2 человека</option>
+          <option value="3">3 человека</option>
+          <option value="4">4 человека</option>
+          <option value="5">5 человек</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label class="form-label">Предпочтения по напиткам</label>
         <div class="checkbox-group">
